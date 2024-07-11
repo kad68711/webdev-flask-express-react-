@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post</title>
+
+</head>
+
+
+<body>
+    <h1><%=blogitem.blogname%></h1>
+    <p><%=blogitem.blogcontent%></p>
+
+<h2>Edit Blog</h2>
+<form action="/edit" method="post">
+   
+    <input type="hidden" name="blog" value="<%= JSON.stringify(blogitem) %>">
+    <!-- Added "id" for association with the label, and "required" for validation -->
+        
+    <label for="postcontent">Post Content:</label>
+    <textarea id="postcontent" name="postcontent" rows="7" cols="50" required></textarea> <!-- Changed to a textarea for multiline input -->
+        
+    <button type="submit">Submit</button>
+    
+</form>
+
+
+    
+</body>
+</html>

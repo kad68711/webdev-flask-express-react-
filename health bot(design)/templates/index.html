@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Symptom Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <!-- Link to your CSS file -->
+  </head>
+  <body>
+    <div class="homepage" id="homepage">
+      <div class="navbar">
+        <a href="#aboutus">ABOUT</a>
+        <a href="#container">BOT</a>
+        <a href="#homepage">HOME</a>
+      </div>
+      <p>
+        Making consultation accessible and free <br /><span
+          >powered by llama2 trained on trusted data</span
+        >
+      </p>
+
+      <img
+        class="imageabove"
+        src="../static/img/Home.png"
+        alt="homeimagehere"
+      />
+    </div>
+    <div class="container" id="container">
+      <div class="header">
+        <h1>Health Symptom Checker</h1>
+      </div>
+      <div class="input-section">
+        <label for="symptoms" style="font-size: large"
+          >Enter your symptoms:</label
+        >
+
+        <input
+          type="text"
+          id="symptoms"
+          placeholder="e.g., headache, fever"
+          style="background-color: rgb(146, 142, 142)"
+        />
+        <button id="submit">Submit</button>
+        <!-- Submit button -->
+      </div>
+      <div class="output-section">
+        <div class="modern-medicine">
+          <div class="logo-container">
+            <img
+              src="../static/img/modern medicne.jpg"
+              alt="Modern Medicine Logo"
+              class="logo"
+            />
+          </div>
+          <h2 style="color: rgb(30, 30, 82)">Modern Medicine</h2>
+          <div class="output-box" id="modern-output"></div>
+        </div>
+        <div class="alternative-medicine">
+          <div class="logo-container">
+            <img
+              src="../static/img/alternate medicine.jpg"
+              alt="Alternative Medicine Logo"
+              class="logo"
+            />
+          </div>
+          <h2 style="color: rgb(17, 86, 17)">Alternative Medicine</h2>
+          <div class="output-box" id="alternative-output"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="aboutus" id="aboutus">
+      <img
+        src="../static/img/medicineimage.jpg"
+        alt="Description of the image"
+        class="left-image"
+      />
+      <div class="text-container">
+        <h2>Making the world a healthier, happier place</h2>
+        <hr style="border: 1px solid black;"/>
+        <p>
+          We offer a all inclusive solution offering both modern medicine
+          solutions aswell as alternative medicine solutions leaving you to best
+          decide what works best for you with data sourced strictly from the
+          most trusted sources
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <!-- Link to your JavaScript file -->
+  </body>
+</html>

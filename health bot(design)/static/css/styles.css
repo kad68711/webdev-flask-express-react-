@@ -1,0 +1,193 @@
+.navbar {
+  background-color: #5a5757;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+.navbar a {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.homepage {
+  text-align: center;
+  width: 100%;
+  height: 600px;
+  font-family: "Old Standard TT", serif;
+  font-weight: bold;
+  
+}
+.homepage p {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  font-size: 60px;
+  transform: translate(-50%, -50%);
+}
+.homepage span {
+  position: absolute;
+  margin-top: 40px;
+  font-size: 20px;
+  text-wrap: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+.imageabove {
+  width: 100%;
+  height: 600px;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(217, 209, 209);
+  background-image: url(""); /* Replace 'background-image.jpg' with your image */
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.container {
+  
+  width: 1300px; /* Increased width */
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(52, 49, 49, 0.174);
+  border-radius: 10px;
+  font-family: "Old Standard TT", serif;
+  color: black;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.input-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-section input {
+  width: calc(100% - 80px); /* Adjusted width for the button */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+}
+#symptoms::placeholder {
+  color: #114622;
+}
+.input-section button {
+  width: 80px; /* Width of the button */
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(25, 112, 25);
+  color: white;
+  cursor: pointer;
+}
+
+.input-section button:hover {
+  background-color: #114622;
+}
+
+.output-section {
+  display: flex;
+  flex-direction: column; /* Change flex direction to column */
+  align-items: center; /* Align items in the center */
+}
+
+.modern-medicine,
+.alternative-medicine {
+  width: 100%; /* Set width to 100% */
+  margin-bottom: 20px; /* Add margin between the boxes */
+}
+
+.logo-container {
+  width: 70px; /* Adjust size as needed */
+  height: 70px; /* Adjust size as needed */
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modern-medicine .logo-container img,
+.alternative-medicine .logo-container img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px; /* Adjust spacing between logo and text */
+}
+
+.modern-medicine h2,
+.alternative-medicine h2 {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.output-box {
+  border: 1px solid rgb(54, 51, 51);
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%; /* Set width to 100% */
+  max-width: 600px; /* Limit maximum width */
+  height: 200px; /* Adjust height as needed */
+  overflow-y: auto;
+}
+
+.output-box p {
+  margin: 0;
+}
+
+.aboutus {
+  color: black;
+  display: flex;
+  background-color: #e7bf7e;
+  width: 100%;
+  height: 600px;
+}
+.aboutus img {
+  margin-top: 50px;
+  height: 500px;
+}
+.aboutus div {
+  text-align: center;
+  width: 400px;
+  margin-top: 45px;
+  margin-left: 200px;
+  font-family: "Old Standard TT", serif;
+}
+.aboutus h2 {
+  text-transform: capitalize;
+  font-size: 50px;
+  text-align: left;
+}
+.aboutus p {
+  font-size: 20px;
+  text-align: left;
+  font-weight: bold;
+}

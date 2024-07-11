@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+  </head>
+  <body>
+    <h1>My Library</h1>
+    <ul>
+      {%if books%}
+      {%for book in books%}
+      <li><a href="{{url_for('delete',id=book.id)}}">Delete Book</a>{{book.title}}-{{book.author}}-<span>{{book.rating}}/10 <a href="{{url_for('edit',id=book.id)}}">Edit Rating</a></span></li>
+      {%endfor%}
+      
+      {%else%}
+      <p>listo wa kharapu desu</p>
+     
+      {%endif%}
+
+    </ul>
+
+    <a href="{{url_for('add')}}">Add New Book</a>
+  </body>
+</html>

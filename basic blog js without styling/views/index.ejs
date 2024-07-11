@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blogs</title>
+</head>
+<body>
+    <h1>Blogs List</h1>
+    <form action="/submitpost" method="post">
+        <label for="postname">Post Name:</label>
+        <input type="text" id="postname" name="postname" required> <!-- Added "id" for association with the label, and "required" for validation -->
+        
+        <label for="postcontent">Post Content:</label>
+        <textarea id="postcontent" name="postcontent" rows="7" cols="50" required></textarea> <!-- Changed to a textarea for multiline input -->
+        
+        <button type="submit">Submit</button>
+    </form>
+    <%for(var i=0;i<blogitems.length;i++){%>
+        <ul>
+        <li><a href="/<%=blogitems[i].blogname%>?blog=<%= encodeURIComponent(JSON.stringify(blogitems[i])) %>"><%=blogitems[i].blogname%> </a></li>
+    </ul>
+    <%}%>
+
+
+    
+</body>
+</html>

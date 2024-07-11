@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+      <form action="{{url_for('add_cafe')}}" method="POST" novalidate>
+      {{form.csrf_token()}}
+      {% from 'bootstrap4/form.html' import render_form %}
+
+      
+      {{ render_form(form) }}
+    </form>
+
+      <!-- This is where your WTForm will go -->
+
+	  <p class="space-above"><a class="btn btn-warning btn-lg" href='{{url_for("cafes")}}'>See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
