@@ -8,7 +8,7 @@ dotenv.config()
 const app = express();
 
 app.use(cors({
-  origin: ' http://localhost:5173', // Allow requests from your frontend
+  origin: process.env.CORS||' http://localhost:5173', // Allow requests from your frontend
   methods: 'GET,POST,PUT,DELETE',  // Allow specific HTTP methods
   credentials: true,               // Allow cookies to be sent if needed
 }));
