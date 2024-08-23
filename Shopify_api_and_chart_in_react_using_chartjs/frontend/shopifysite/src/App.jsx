@@ -5,19 +5,20 @@ import NewCustomersOverTimeChart from './NewCustomerOvertime';
 import RepeatCustomersOverTimeChart from './RepeatCustomersOvertime';
 import GeoDistributionChart from './GeoDistribution';
 
+// Get the base URI from environment variables with a fallback to localhost
+const BASE_URI = process.env.REACT_APP_API_URI || 'http://localhost:3000';
+
 // Fetch functions using fetch API
 const fetchTotalSales = async (interval) => {
-  const response = await fetch(`http://localhost:3000/api/analytics/total-sales?interval=${interval}`);
-
+  const response = await fetch(`${BASE_URI}/api/analytics/total-sales?interval=${interval}`);
   if (!response.ok) {
-    
     throw new Error('Failed to fetch total sales');
   }
   return response.json();
 };
 
 const fetchSalesGrowth = async (interval) => {
-  const response = await fetch(`http://localhost:3000/api/analytics/sales-growth?interval=${interval}`);
+  const response = await fetch(`${BASE_URI}/api/analytics/sales-growth?interval=${interval}`);
   if (!response.ok) {
     throw new Error('Failed to fetch sales growth');
   }
@@ -25,7 +26,7 @@ const fetchSalesGrowth = async (interval) => {
 };
 
 const fetchNewCustomers = async (interval) => {
-  const response = await fetch(`http://localhost:3000/api/analytics/new-customers?interval=${interval}`);
+  const response = await fetch(`${BASE_URI}/api/analytics/new-customers?interval=${interval}`);
   if (!response.ok) {
     throw new Error('Failed to fetch new customers');
   }
@@ -33,7 +34,7 @@ const fetchNewCustomers = async (interval) => {
 };
 
 const fetchRepeatCustomers = async (interval) => {
-  const response = await fetch(`http://localhost:3000/api/analytics/repeat-customers?interval=${interval}`);
+  const response = await fetch(`${BASE_URI}/api/analytics/repeat-customers?interval=${interval}`);
   if (!response.ok) {
     throw new Error('Failed to fetch repeat customers');
   }
@@ -41,7 +42,7 @@ const fetchRepeatCustomers = async (interval) => {
 };
 
 const fetchGeoDistribution = async () => {
-  const response = await fetch(`http://localhost:3000/api/analytics/geo-distribution`);
+  const response = await fetch(`${BASE_URI}/api/analytics/geo-distribution`);
   if (!response.ok) {
     throw new Error('Failed to fetch geographical distribution');
   }
@@ -49,7 +50,6 @@ const fetchGeoDistribution = async () => {
 };
 
 const YourComponent = () => {
-  // ################
   const { data: totalSalesDaily, error: totalSalesDailyError } = useQuery({
     queryKey: ['totalSales', 'daily'],
     queryFn: () => fetchTotalSales('daily')
@@ -59,14 +59,13 @@ const YourComponent = () => {
     queryFn: () => fetchTotalSales('monthly')
   });
   const { data: totalSalesQuarterly, error: totalSalesQuarterlyError } = useQuery({
-    queryKey: ['totalSales', 'quatertotalSalesquarterly'],
+    queryKey: ['totalSales', 'quarterly'],
     queryFn: () => fetchTotalSales('quarterly')
   });
   const { data: totalSalesYearly, error: totalSalesYearlyError } = useQuery({
     queryKey: ['totalSales', 'yearly'],
     queryFn: () => fetchTotalSales('yearly')
   });
-  // #################
 
   const { data: salesGrowthDaily, error: salesGrowthDailyError } = useQuery({
     queryKey: ['salesGrowth', 'daily'],
@@ -87,7 +86,6 @@ const YourComponent = () => {
     queryKey: ['salesGrowth', 'yearly'],
     queryFn: () => fetchSalesGrowth('yearly')
   });
-  // #################
 
   const { data: newCustomersDaily, error: newCustomersDailyError } = useQuery({
     queryKey: ['newCustomers', 'daily'],
@@ -108,7 +106,6 @@ const YourComponent = () => {
     queryKey: ['newCustomers', 'yearly'],
     queryFn: () => fetchNewCustomers('yearly')
   });
-  // ###################
 
   const { data: repeatCustomersDaily, error: repeatCustomersDailyError } = useQuery({
     queryKey: ['repeatCustomers', 'daily'],
@@ -129,14 +126,11 @@ const YourComponent = () => {
     queryKey: ['repeatCustomers', 'yearly'],
     queryFn: () => fetchRepeatCustomers('yearly')
   });
-  // ####################
 
   const { data: geoDistribution, error: geoDistributionError } = useQuery({
     queryKey: ['geoDistribution'],
     queryFn: fetchGeoDistribution
   });
-
-  // #####################
 
   if (totalSalesDailyError || salesGrowthDailyError || newCustomersDailyError || repeatCustomersDailyError || geoDistributionError) {
     console.error({
@@ -149,49 +143,36 @@ const YourComponent = () => {
     return <div>Error loading data</div>;
   }
 
-  
-
   return (
     <div>
-    <div>
-      {/* Render your data here */}
-      {/* <h1>Total Sales: {JSON.stringify(totalSales)}</h1>
-      <h1>Sales Growth: {JSON.stringify(salesGrowth)}</h1>
-      <h1>New Customers: {JSON.stringify(newCustomers)}</h1>
-      <h1>Repeat Customers: {JSON.stringify(repeatCustomers)}</h1>
-      <h1>Geographical Distribution: {JSON.stringify(geoDistribution)}</h1> */}
+      <div>
+        <SalesOverTimeChart salesData={totalSalesDaily} timePeriod={"daily"} />
+        <SalesOverTimeChart salesData={totalSalesMonthly} timePeriod={"monthly"} />
+        <SalesOverTimeChart salesData={totalSalesQuarterly} timePeriod={"quarterly"} />
+        <SalesOverTimeChart salesData={totalSalesYearly} timePeriod={"yearly"} />
+      </div>
+      <div>
+        <SalesGrowthOverTimeChart salesData={salesGrowthDaily} timePeriod={"daily"} />
+        <SalesGrowthOverTimeChart salesData={salesGrowthMonthly} timePeriod={"monthly"} />
+        <SalesGrowthOverTimeChart salesData={salesGrowthQuarterly} timePeriod={"quarterly"} />
+        <SalesGrowthOverTimeChart salesData={salesGrowthYearly} timePeriod={"yearly"} />
+      </div>
+      <div>
+        <NewCustomersOverTimeChart salesData={newCustomersDaily} timePeriod={"daily"} />
+        <NewCustomersOverTimeChart salesData={newCustomersMonthly} timePeriod={"monthly"} />
+        <NewCustomersOverTimeChart salesData={newCustomersQuarterly} timePeriod={"quarterly"} />
+        <NewCustomersOverTimeChart salesData={newCustomersYearly} timePeriod={"yearly"} />
+      </div>
+      <div>
+        <RepeatCustomersOverTimeChart salesData={repeatCustomersDaily} timePeriod={"daily"} />
+        <RepeatCustomersOverTimeChart salesData={repeatCustomersMonthly} timePeriod={"monthly"} />
+        <RepeatCustomersOverTimeChart salesData={repeatCustomersQuarterly} timePeriod={"quarterly"} />
+        <RepeatCustomersOverTimeChart salesData={repeatCustomersYearly} timePeriod={"yearly"} />
+      </div>
+      <div>
+        <GeoDistributionChart geoData={geoDistribution} />
+      </div>
     </div>
-    <div>
-    <SalesOverTimeChart salesData={totalSalesDaily} timePeriod={"daily"} />
-    <SalesOverTimeChart salesData={totalSalesMonthly} timePeriod={"monthly"} />
-    <SalesOverTimeChart salesData={totalSalesQuarterly} timePeriod={"quarterly"} />
-    <SalesOverTimeChart salesData={totalSalesYearly} timePeriod={"yearly"} />
-    </div>
-    <div>
-    <SalesGrowthOverTimeChart salesData={salesGrowthDaily} timePeriod={"daily"} />
-    <SalesGrowthOverTimeChart salesData={salesGrowthMonthly} timePeriod={"monthly"} />
-    <SalesGrowthOverTimeChart salesData={salesGrowthQuarterly} timePeriod={"quarterly"} />
-    <SalesGrowthOverTimeChart salesData={salesGrowthYearly} timePeriod={"yearly"} />
-    </div>
-    <div>
-    <NewCustomersOverTimeChart salesData={newCustomersDaily} timePeriod={"daily"} />
-    <NewCustomersOverTimeChart salesData={newCustomersMonthly} timePeriod={"monthly"} />
-    <NewCustomersOverTimeChart salesData={newCustomersQuarterly} timePeriod={"quarterly"} />
-    <NewCustomersOverTimeChart salesData={newCustomersYearly} timePeriod={"yearly"} />
-
-    </div>
-    <div>
-      <RepeatCustomersOverTimeChart salesData={repeatCustomersDaily} timePeriod={"daily"} />
-      <RepeatCustomersOverTimeChart salesData={repeatCustomersMonthly} timePeriod={"monthly"} />
-      <RepeatCustomersOverTimeChart salesData={repeatCustomersQuarterly} timePeriod={"quarterly"} />
-      <RepeatCustomersOverTimeChart salesData={repeatCustomersYearly} timePeriod={"yearly"} />
-    </div>
-    <div>
-      <GeoDistributionChart geoData={geoDistribution} />
-    </div>
-    </div>
-
-
   );
 };
 
