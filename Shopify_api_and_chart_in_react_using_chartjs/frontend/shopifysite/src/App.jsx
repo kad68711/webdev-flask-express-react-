@@ -6,7 +6,8 @@ import RepeatCustomersOverTimeChart from './RepeatCustomersOvertime';
 import GeoDistributionChart from './GeoDistribution';
 
 // Get the base URI from environment variables with a fallback to localhost
-const BASE_URI = process.env.VITE_API_URI || 'http://localhost:3000';
+const BASE_URI = import.meta.env.VITE_API_URI || 'http://localhost:3000';
+
 
 // Fetch functions using fetch API
 const fetchTotalSales = async (interval) => {
