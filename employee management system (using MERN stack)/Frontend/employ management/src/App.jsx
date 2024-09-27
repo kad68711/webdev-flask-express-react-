@@ -12,6 +12,7 @@ const authLoader = async () => {
     // If no token, redirect to login
     return redirect("/");
   }
+  return null;
 };
 
 const router = createBrowserRouter([
